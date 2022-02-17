@@ -3,12 +3,12 @@
 \a=11;
 \ro=1cm;
 \ri=6;
-\di=0.1;
+\di=1;
 }
 
 \draw[fill=orange] (0-\di/2,0-\di/2) rectangle (\a+\di/2,\a+\di/2);
 \draw[rounded corners=\ro,fill=white] (0,0) rectangle (\a,\a);
-\draw[fill=white] (\a/2,\a/2) circle [radius=\ri/2];
+\draw[fill=blue!20] (\a/2,\a/2) circle [radius=\ri/2];
 
 \draw[densely dotted] (0-\di/2,\a+\di/2) -- +(0,2);
 \draw[densely dotted] (\a+\di/2,\a+\di/2) -- +(0,2);

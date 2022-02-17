@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.8.10)  17 FEB 2022 23:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.8.10)  17 FEB 2022 23:53
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -142,14 +142,15 @@ File: babel.def 2021/07/22 3.63 Babel common definitions
 \bbl@readstream=\read2
 )
 \bbl@dirlevel=\count192
-(/usr/local/texlive/2021/texmf-dist/tex/generic/babel-german/ngerman.ldf
-Language: ngerman 2021/02/27 v2.13 German support for babel (post-1996 orthogra
-phy)
-(/usr/local/texlive/2021/texmf-dist/tex/generic/babel-german/ngermanb.ldf
-Language: ngermanb 2021/02/27 v2.13 German support for babel (post-1996 orthogr
-aphy)
-Package babel Info: Making " an active character on input line 122.
-))) (/usr/local/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language21). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language21). Reported on input line 108.
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
@@ -1365,7 +1366,7 @@ Package caption Info: hyperref package is loaded.
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
-Package csquotes Info: Redefining alias 'default' -> 'ngerman'.
+Package csquotes Info: Redefining alias 'default' -> 'english'.
 
 LaTeX Warning: Unused global option(s):
     [noendnumber].
@@ -1389,6 +1390,9 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 59.
 LaTeX Font Info:    ... okay on input line 59.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 59.
 LaTeX Font Info:    ... okay on input line 59.
+Package scrbase Info: activating english \contentsname on input line 59.
+Package scrbase Info: activating english \listfigurename on input line 59.
+Package scrbase Info: activating english \listtablename on input line 59.
 (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count481
@@ -1411,12 +1415,12 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 (/usr/local/texlive/2021/texmf-dist/tex/latex/translations/translations-basic-d
-ictionary-german.trsl
-File: translations-basic-dictionary-german.trsl (german translation file `trans
-lations-basic-dictionary')
+ictionary-english.trsl
+File: translations-basic-dictionary-english.trsl (english translation file `tra
+nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `german'. on input line 59.
+or `english'. on input line 59.
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
@@ -1450,20 +1454,11 @@ File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
 \providecommand\BKM@entry[2]{}
 \BKM@id=\count488
 ))
-Package biblatex Info: Trying to load language 'ngerman'...
-Package biblatex Info: ... file 'ngerman.lbx' found.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/ngerman.lbx
-File: ngerman.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
-Package biblatex Info: Trying to load language 'german'...
-Package biblatex Info: ... file 'german.lbx' found.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/german.lbx
-File: german.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
 )
-Package biblatex Info: Trying to load language 'german'...
-Package biblatex Info: ... file 'german.lbx' found.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/german.lbx
-File: german.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
-))
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
@@ -1511,7 +1506,7 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 /img/coil.tikz) (./img/coil.tikz) (./img/coil.tikz) (./img/coil.tikz
 \openout5 = `tikz/main-figure1.dpth'.
 
-[2
+[4
 
 \providecommand \oddpage@label [2]{}
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
@@ -1537,16 +1532,16 @@ Package logreq Info: Writing requests to 'tikz/main-figure1.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 64762 strings out of 478542
- 1595237 string characters out of 5850401
- 2755198 words of memory out of 5000000
- 81792 multiletter control sequences out of 15000+600000
+ 64695 strings out of 478542
+ 1594296 string characters out of 5850401
+ 2734299 words of memory out of 5000000
+ 81736 multiletter control sequences out of 15000+600000
  415673 words of font info for 61 fonts, out of 8000000 for 9000
- 1143 hyphenation exceptions out of 8191
- 112i,18n,136p,10660b,2343s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 1141 hyphenation exceptions out of 8191
+ 112i,18n,136p,10660b,1694s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 ></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on tikz/main-figure1.pdf (1 page, 31469 bytes).
+Output written on tikz/main-figure1.pdf (1 page, 31236 bytes).
 PDF statistics:
  49 PDF objects out of 1000 (max. 8388607)
  25 compressed objects within 1 object stream

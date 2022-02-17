@@ -6,7 +6,7 @@
 \a=\p*11;
 \ro=\p*1cm;
 \ri=\p*6;
-\di=\p*0.1;
+\di=\p*1;
 \depoxy=\p*2;
 \dair=\p*2;
 %dont change stuff below this line
@@ -34,7 +34,7 @@
 \foreach \n in {0,1,...,\Nhor} {
 \foreach \m in {0,1,...,\Nver}{
 \begin{scope}[shift={(\b*\n,\b*\m)}]
-\draw[fill=\insulationcolor] (0-\di/2,0-\di/2) rectangle (\a+\di/2,\a+\di/2);
+\draw[draw=orange!60!black,fill=\insulationcolor] (0-\di/2,0-\di/2) rectangle (\a+\di/2,\a+\di/2);
 \draw[rounded corners=\ro,fill=\coppercolor] (0,0) rectangle (\a,\a);
 \draw[fill=\coolingcolor] (\a/2,\a/2) circle [radius=\ri/2];
 \end{scope}
