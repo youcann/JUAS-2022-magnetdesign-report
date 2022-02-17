@@ -154,6 +154,28 @@ Minimum number of turns:
 \end{align}
 
 \subsection{Coil Parameters}
+Coil width:
+\begin{equation}
+    w_\text{coil}=N_\text{horizontal} \cdot (a+d_\text{insulation}) + 2\cdot(d_\text{epoxy} + d_\text{air}) = \SI{128}{\mm}
+\end{equation}
+
+Coil height:
+\begin{equation}
+    h_\text{coil}=N_\text{vertical} \cdot (a+d_\text{insulation}) + 2\cdot(d_\text{epoxy} + d_\text{air}) = \SI{68}{\mm}
+\end{equation}
+
+with $N_\text{horizontal}=10$, $N_\text{vertical}=5$, $a=\SI{11}{\mm}$, $d_\text{insulation}=\SI{1}{\mm}$, $d_\text{epoxy}=\SI{2}{\mm}$ and $d_\text{air}=\SI{2}{\mm}$.
+
+
+Average turn length:
+\begin{equation}
+    l_\text{avg}= \text{pole perimeter} + 4 \cdot w_\text{coil} + l_\text{mag} = \SI{32514.2}{\mm}
+\end{equation}
+
+\begin{equation}
+pole perimeter = 2 \cdot (iron length + 2 \cdot pole width + coil width) = 9999.
+\end{equation}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{img/coil.tikz}
