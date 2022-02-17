@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+\tikzmath{%everything in cm
+\a=11;
+\ro=1cm;
+\ri=6;
+\di=0.1;
+}
+
+\draw[fill=orange] (0-\di/2,0-\di/2) rectangle (\a+\di/2,\a+\di/2);
+\draw[rounded corners=\ro,fill=white] (0,0) rectangle (\a,\a);
+\draw[fill=white] (\a/2,\a/2) circle [radius=\ri/2];
+
+\draw[densely dotted] (0-\di/2,\a+\di/2) -- +(0,2);
+\draw[densely dotted] (\a+\di/2,\a+\di/2) -- +(0,2);
+\draw[Latex-Latex]   (0-\di/2,\a+1.2+\di/2) -- node[fill=white] {$a=\SI{11}{\mm}$} (\a+\di/2,\a+1.2+\di/2);
+\draw[Latex-] (45:0.42) -- node[fill=white,rotate=45] {$r_o=\SI{1}{\mm}$}+(45:2.5);
+\draw[*-Latex] (\a/2,\a/2) -- node[fill=white,rotate=-15] {$r_c=\SI{6}{\mm}$} +(-15:\ri/2);
+\draw[Latex-] (-\di/2,0.8*\a) -- +(-0.5,0);
+\draw[Latex-] (0,0.8*\a) -- node[fill=white] {$d_i/2=\SI{1}{\mm}$} +(3,0);
+\end{tikzpicture}

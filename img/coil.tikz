@@ -1,0 +1,66 @@
+\begin{tikzpicture}
+\tikzmath{%everything in cm
+\p=0.05; %global scale for drawing only
+\Nhor=10;
+\Nver=5;
+\a=\p*11;
+\ro=\p*1cm;
+\ri=\p*6;
+\di=\p*0.1;
+\depoxy=\p*2;
+\dair=\p*2;
+%dont change stuff below this line
+\b=\a+\di;
+\wcoil=\Nhor*(\b/\p);
+\wepoxy=\Nhor*(\b/\p)+(2*\depoxy/\p);
+\wair=\Nhor*(\b/\p)+(2*\dair/\p)+(2*\depoxy/\p);
+\hcoil=\Nver*(\b/\p);
+\hepoxy=\Nver*(\b/\p)+(2*\depoxy/\p);
+\hair=\Nver*(\b/\p)+(2*\dair/\p)+(2*\depoxy/\p);
+\l=0.8;
+\Nhor=\Nhor-1;
+\Nver=\Nver-1;
+\dair=\dair+\depoxy;
+}
+\def\coppercolor{white}
+\def\insulationcolor{orange}
+\def\coolingcolor{blue!30}
+\def\epoxycolor{red!30}
+\def\aircolor{green!30}
+
+\draw[fill=\aircolor] (-\dair,-\dair) rectangle (\Nhor*\b+\b+\dair,\Nver*\b+\b+\dair);
+\draw[fill=\epoxycolor] (-\depoxy,-\depoxy) rectangle (\Nhor*\b+\b+\depoxy,\Nver*\b+\b+\depoxy);
+
+\foreach \n in {0,1,...,\Nhor} {
+\foreach \m in {0,1,...,\Nver}{
+\begin{scope}[shift={(\b*\n,\b*\m)}]
+\draw[fill=\insulationcolor] (0-\di/2,0-\di/2) rectangle (\a+\di/2,\a+\di/2);
+\draw[rounded corners=\ro,fill=\coppercolor] (0,0) rectangle (\a,\a);
+\draw[fill=\coolingcolor] (\a/2,\a/2) circle [radius=\ri/2];
+\end{scope}
+}
+}
+
+%coils
+\draw[densely dotted] (0,\Nver*\b+\b) -- +(0,1.5*\l);
+\draw[densely dotted] (\Nhor*\b+\b,\Nver*\b+\b) -- +(0,1.5*\l);
+\draw[Latex-Latex] (0,1.2*\l+\Nver*\b+\b) -- node[fill=white] {$\SI[round-mode=places,round-precision=1]{\wcoil}{\mm}$}(\Nhor*\b+\b,1.2*\l+\Nver*\b+\b);
+\draw[densely dotted] (\Nhor*\b+\b,0) -- +(1.5*\l,0);
+\draw[densely dotted] (\Nhor*\b+\b,\Nver*\b+\b) -- +(1.5*\l,0);
+\draw[Latex-Latex] (\Nhor*\b+\b+1.2*\l,0) -- node[fill=white,rotate=-90] {$\SI[round-mode=places,round-precision=1]{\hcoil}{\mm}$}(\Nhor*\b+\b+1.2*\l,\Nver*\b+\b);
+%with epoxy
+\draw[densely dotted] (-\depoxy,\depoxy+\Nver*\b+\b) -- +(0,\depoxy+1.9*\l);
+\draw[densely dotted] (\depoxy+\Nhor*\b+\b,\depoxy+\Nver*\b+\b) -- +(0,\depoxy+1.9*\l);
+\draw[Latex-Latex] (-\depoxy,\depoxy+1.7*\l+\Nver*\b+\b) -- node[fill=white] {$\SI[round-mode=places,round-precision=1]{\wepoxy}{\mm}$}(\depoxy+\Nhor*\b+\b,\depoxy+1.7*\l+\Nver*\b+\b);
+\draw[densely dotted] (\depoxy+\Nhor*\b+\b,-\depoxy) -- +(1.9*\l,0);
+\draw[densely dotted] (\depoxy+\Nhor*\b+\b,\depoxy+\Nver*\b+\b) -- +(1.9*\l,0);
+\draw[Latex-Latex] (\depoxy+\Nhor*\b+\b+1.7*\l,-\depoxy) -- node[fill=white,rotate=-90] {$\SI[round-mode=places,round-precision=1]{\hepoxy}{\mm}$}(\depoxy+\Nhor*\b+\b+1.7*\l,\Nver*\b+\b+\depoxy);
+%with air
+\draw[densely dotted] (-\dair,\dair+\Nver*\b+\b) -- +(0,\dair+2.3*\l);
+\draw[densely dotted] (\dair+\Nhor*\b+\b,\dair+\Nver*\b+\b) -- +(0,\dair+2.3*\l);
+\draw[Latex-Latex] (-\dair,\dair+2.3*\l+\Nver*\b+\b) -- node[fill=white] {$\SI[round-mode=places,round-precision=1]{\wair}{\mm}$}(\dair+\Nhor*\b+\b,\dair+2.3*\l+\Nver*\b+\b);
+\draw[densely dotted] (\dair+\Nhor*\b+\b,-\dair) -- +(2.5*\l,0);
+\draw[densely dotted] (\dair+\Nhor*\b+\b,\dair+\Nver*\b+\b) -- +(2.5*\l,0);
+\draw[Latex-Latex] (\dair+\Nhor*\b+\b+2.3*\l,-\dair) -- node[fill=white,rotate=-90] {$\SI[round-mode=places,round-precision=1]{\hair}{\mm}$}(\dair+\Nhor*\b+\b+2.3*\l,\Nver*\b+\b+\dair);
+
+\end{tikzpicture}

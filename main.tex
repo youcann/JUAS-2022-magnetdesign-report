@@ -2,7 +2,7 @@
 %german umlauts and localization
 \usepackage[utf8]{inputenc} 
 \usepackage[T1]{fontenc}
-\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -33,6 +33,7 @@
 \usetikzlibrary{shapes.geometric}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{arrows}
+\usetikzlibrary{math}
 \usetikzlibrary{shapes.symbols,shadows}
 
 %bib stuff
@@ -124,6 +125,14 @@ Pole width:
 \end{align}
 
 \subsection{Nominal Current and Turns}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{img/winding.tikz}
+\caption{Cross section}
+\end{figure}
+
+
 Copper winding area
 \begin{align}
 A &= a^2- R^2 (4-\pi) - \pi \left(\frac{c}{2}\right)^2\\
@@ -145,6 +154,13 @@ Minimum number of turns:
 \end{align}
 
 \subsection{Coil Parameters}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{img/coil.tikz}
+\caption{Coil cross section}
+\end{figure}
+
+
 
 \subsection{Cooling}
 Length of cooling circuit:
