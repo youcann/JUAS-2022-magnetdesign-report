@@ -1,0 +1,107 @@
+\documentclass[10pt,a4paper,noendnumber=true]{scrartcl}
+%german umlauts and localization
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+%figures etc.
+\usepackage[pdftex]{graphicx}
+\usepackage{standalone} %externalize files for faster compilation
+\usepackage{float}
+
+%mathematical symbols
+\usepackage{latexsym} % special symbols 
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{textcomp} % supports the Text Companion fonts, 
+\usepackage{mathrsfs}  % for script-like fonts in math mode
+\usepackage{nicefrac} % nice fracs in text
+
+%units
+\usepackage{siunitx}
+
+%tikz
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usepackage{pgfplots} 
+\usepackage{pdflscape}
+\usepackage[european]{circuitikz}
+\pgfplotsset{compat=newest} 
+\pgfplotsset{plot coordinates/math parser=false}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes.symbols,shadows}
+
+%bib stuff
+\usepackage[draft = false]{hyperref}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=ieee]{biblatex}
+%\addbibresource{bib.bib}
+
+%align multi pgfplots
+\pgfplotsset{yticklabel style={text width=3em,align=right}}
+
+\usetikzlibrary{external}
+\tikzexternalize[optimize=false,prefix=tikz/] % activate!
+
+\usepackage{subfig}
+
+\title{Magnet design for MedAustron}
+\subtitle{}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Analytical}
+
+\subsection{Magnet type decision}
+Use H-type
+\begin{itemize}
+\item Mechanical rigid
+\item Symmetrical
+\item (-) hard to get the beam pipe in/out
+\end{itemize}
+
+
+\subsection{Flux Density}
+Total bending angle:
+\begin{equation}
+    \theta_\text{tot} = 3 \cdot \SI{36}{\degree} = \SI{108}{\degree}
+\end{equation}
+
+\begin{equation}
+    \theta_\text{total} = \frac{l_\text{total}}{\rho} \Rightarrow \rho = \frac{l_\text{total}}{\theta_\text{total}} = \frac{\SI{1500}{\mm}}{\SI{1.8849}{\radian}} = \SI{0.79}{\meter}
+\end{equation}
+
+\begin{align}
+    B_\text{min} &= \frac{(B \rho)_\text{min}}{\rho} = \frac{\SI{0.383}{\tesla\meter}}{\SI{0.79}{\meter}} = \SI{0.485}{\tesla}\\
+    B_\text{max} &= \frac{(B \rho)_\text{max}}{\rho} = \frac{\SI{0.766}{\tesla\meter}}{\SI{0.79}{\meter}} = \SI{0.970}{\tesla}
+\end{align}
+
+\subsection{Aperture Height}
+\begin{equation}
+    h = h_\text{GFR} + 2\cdot d_\text{vacuum} + d_\text{tolerance} =
+    \SI{20}{\mm} + 2\cdot \SI{2}{\mm} + \SI{10}{\mm} = \SI{34}{\mm}
+\end{equation}
+
+
+\subsection{Current}
+Copper winding area
+\begin{align}
+A &= a^2-\pi R^2 - \pi \left(\frac{c}{2}\right)^2\\
+A &= \SI{89.58}{\mm\squared}
+\end{align}
+with $a=\SI{11}{\mm}$, $R=\SI{1}{\mm}$, $c=\SI{6}{\mm}$.
+
+Maximum current:
+\begin{equation}
+I_\text{max} = \SI{6}{\ampere\per\mm\squared} \cdot \SI{89.58}{\mm\squared} = \SI{537.48}{\ampere}
+\end{equation}
+
+\end{document}
+
