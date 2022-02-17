@@ -48,6 +48,7 @@
 \tikzexternalize[optimize=false,prefix=tikz/] % activate!
 
 \usepackage{subfig}
+\setlength\parindent{0pt}
 
 \title{Magnet design for MedAustron}
 \subtitle{}
@@ -67,6 +68,11 @@ Use H-type
 \item (-) hard to get the beam pipe in/out
 \end{itemize}
 
+\subsection{Aperture Height}
+\begin{align}
+    h &= 2\cdot h_\text{GFR} + 2\cdot d_\text{vacuum} + d_\text{tolerance} \\
+      &= 2\cdot\SI{23}{\mm} + 2\cdot \SI{2}{\mm} + \SI{2}{\mm} = \SI{52}{\mm}
+\end{align}
 
 \subsection{Flux Density}
 Total bending angle:
@@ -74,34 +80,107 @@ Total bending angle:
     \theta_\text{tot} = 3 \cdot \SI{36}{\degree} = \SI{108}{\degree}
 \end{equation}
 
+Total length
 \begin{equation}
-    \theta_\text{total} = \frac{l_\text{total}}{\rho} \Rightarrow \rho = \frac{l_\text{total}}{\theta_\text{total}} = \frac{\SI{1500}{\mm}}{\SI{1.8849}{\radian}} = \SI{0.79}{\meter}
+    l_\text{mag} = (l_\text{iron})_{max} + 2hk = \SI{0.340}{\meter} + 2\cdot 0.55 \cdot \SI{52}{\mm} = \SI{397.2}{\mm}
+\end{equation}
+
+\begin{equation}
+    \theta_\text{mag} = \frac{l_\text{mag}}{\rho} \Rightarrow \rho = \frac{l_\text{mag}}{\theta_\text{mag}} = \frac{\SI{397.2}{\mm}}{\SI{0.6283}{\radian}} = \SI{0.642}{\meter}
 \end{equation}
 
 \begin{align}
-    B_\text{min} &= \frac{(B \rho)_\text{min}}{\rho} = \frac{\SI{0.383}{\tesla\meter}}{\SI{0.79}{\meter}} = \SI{0.485}{\tesla}\\
-    B_\text{max} &= \frac{(B \rho)_\text{max}}{\rho} = \frac{\SI{0.766}{\tesla\meter}}{\SI{0.79}{\meter}} = \SI{0.970}{\tesla}
+    B_\text{min} &= \frac{(B \rho)_\text{min}}{\rho} = \frac{\SI{0.383}{\tesla\meter}}{\SI{0.642}{\meter}} = \SI{0.596}{\tesla}\\
+    B_\text{max} &= \frac{(B \rho)_\text{max}}{\rho} = \frac{\SI{0.766}{\tesla\meter}}{\SI{0.642}{\meter}} = \SI{1.19}{\tesla}
 \end{align}
 
-\subsection{Aperture Height}
+
+\subsection{Pole width and yoke thickness}
+
 \begin{equation}
-    h = h_\text{GFR} + 2\cdot d_\text{vacuum} + d_\text{tolerance} =
-    \SI{20}{\mm} + 2\cdot \SI{2}{\mm} + \SI{10}{\mm} = \SI{34}{\mm}
+    \frac{\Delta B}{B_0} = {1e-3}
 \end{equation}
 
+\begin{align}
+    x_\text{unoptimized} &= 2\frac{a_\text{unoptimized}}{h} = -0.36 \ln\left[\frac{\Delta B}{B_0}\right] - 0.90 = 1.5898 \\
+    x_\text{optimized} &= 2\frac{a_\text{optimized}}{h} = -0.14 \ln\left[\frac{\Delta B}{B_0}\right] -0.25 = 0.7171 \\
+    a_\text{optimized} &= \frac{h\cdot x_\text{optimized}}{2} = \frac{\SI{52}{\mm} \cdot 0.7171}{2} = \SI{18.645}{\mm}
+\end{align}
 
-\subsection{Current}
+Pole width:
+\begin{align}
+    \text{GFRx'} = \text{GFRx} + \underbrace{\rho(1-\cos \nicefrac{\theta}{2}}_s = \SI{20}{\mm} + \SI{31.42}{\mm} 
+    &= \SI{51.42}{\mm}
+\end{align}
+
+\begin{equation}
+    w = 2\cdot \left(\text{GFRx'} + a_\text{optimized}\right) = \SI{140.13}{\mm}
+\end{equation}
+
+\subsection{Excitation Current}
+\begin{align}
+    (NI)_\text{dipole, min} &= \frac{B_\text{min}\,h}{2\,\mu_0} = \frac{\SI{0.596}{\tesla} \cdot \SI{52}{\mm}}{2\cdot \mu_0} = \SI{12.331}{\kilo\ampere}\\
+    (NI)_\text{dipole, max} &= \frac{B_\text{max}\,h}{2\,\mu_0} = \frac{\SI{1.19}{\tesla} \cdot \SI{52}{\mm}}{2\cdot \mu_0} = \SI{24.621}{\kilo\ampere}
+\end{align}
+
+\subsection{Nominal Current and Turns}
 Copper winding area
 \begin{align}
-A &= a^2-\pi R^2 - \pi \left(\frac{c}{2}\right)^2\\
-A &= \SI{89.58}{\mm\squared}
+A &= a^2- R^2 (4-\pi) - \pi \left(\frac{c}{2}\right)^2\\
+A &= \SI{91.867}{\mm\squared}
 \end{align}
 with $a=\SI{11}{\mm}$, $R=\SI{1}{\mm}$, $c=\SI{6}{\mm}$.
 
-Maximum current:
+Total allowed current: $I_\text{max,PS} = \SI{600}{\ampere}$
+
+Maximum possible current limited by the winding cross section:
 \begin{equation}
-I_\text{max} = \SI{6}{\ampere\per\mm\squared} \cdot \SI{89.58}{\mm\squared} = \SI{537.48}{\ampere}
+I_\text{max} = \SI{6}{\ampere\per\mm\squared} \cdot \SI{91.867}{\mm\squared} = \SI{551.202}{\ampere}
 \end{equation}
+
+Minimum number of turns:
+\begin{align}
+    N_{B\text{,min}} &= \left\lceil\frac{(NI)_\text{min}}{I_\text{max}}\right\rceil = 23\\
+    N_{B\text{,max}} &= \left\lceil\frac{(NI)_\text{max}}{I_\text{max}}\right\rceil = 45
+\end{align}
+
+\subsection{Coil Parameters}
+
+\subsection{Cooling}
+Length of cooling circuit:
+\begin{equation}
+    l = \frac{K_c\,N\,l_\text{avg}}{K_w} = 
+\end{equation}
+
+
+With the maximum allowed pressure drop of $\Delta p = \SI{0.7}{\mega\pascal} = \SI{7}{\bar}$, the hydraulic diameter $d=\SI{6}{\mm}$ and using
+\begin{equation}
+\Delta p = 60\,l\frac{Q^{1.75}}{d^{4.75}},
+\end{equation}
+the maximum water flow $Q$ is
+\begin{equation}
+    Q = \left(\frac{\Delta p \cdot d^{4.75}}{60\cdot l}\right)^\frac{1}{1.75} = \SI{999}{\liter\per\minute}.
+\end{equation}
+
+Using this result and the maximum allowed temperature increase of $\Delta T=\SI{15}{\kelvin}$ together with
+\begin{equation}
+    Q = 14.3 \frac{P}{\Delta T} \cdot \num{1e-3},
+\end{equation}
+the maximum allowed dissipated power is
+\begin{equation}
+    P = \frac{Q \cdot \Delta T}{14.3 \cdot \num{1e-3}} = \SI{999}{\watt}.
+\end{equation}
+
+Average water velocity:
+\begin{equation}
+    u_\text{avg} = 16.67 \cdot \frac{Q}{A} = 16.67 \cdot \frac{4\cdot Q}{\pi d^2}
+\end{equation}
+
+Reynolds number (with $v=\SI{6.58e-7}{\meter\squared\per\second}$):
+\begin{equation}
+    R_e = d \cdot \frac{u_\text{avg}}{v} \cdot \num{1e-3} = \num{999}
+\end{equation}
+From $R_e><4000$ turbulent flow can/cannot be assumed.
 
 \end{document}
 
