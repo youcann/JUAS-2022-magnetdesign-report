@@ -21,6 +21,7 @@
 
 %units
 \usepackage{siunitx}
+\DeclareSIUnit{\bar}{bar}
 
 %tikz
 \usepackage{tikz}
@@ -145,6 +146,44 @@ Minimum number of turns:
 \end{align}
 
 \subsection{Coil Parameters}
+Coil width:
+\begin{equation}
+    w_\text{coil}=N_\text{horizontal} \cdot (a+d_\text{insulation}) + d_\text{epoxy} + d_\text{air} = \SI{124}{\mm}
+\end{equation}
+
+Coil height:
+\begin{equation}
+    h_\text{coil}=N_\text{vertical} \cdot (a+d_\text{insulation}) + d_\text{epoxy} + d_\text{air} = \SI{64}{\mm}
+\end{equation}
+
+with $N_\text{horizontal}=10$, $N_\text{vertical}=5$, $a=\SI{11}{\mm}$, $d_\text{insulation}=\SI{1}{\mm}$, $d_\text{epoxy}=\SI{2}{\mm}$ and $d_\text{air}=\SI{2}{\mm}$.
+
+
+Average turn length:
+\begin{equation}
+    l_\text{avg}= \text{pole perimeter} + 4 \cdot w_\text{coil} + l_\text{mag} = \SI{32514.2}{\mm}
+\end{equation}
+
+\begin{equation}
+pole perimeter = 2 \cdot (iron length + 2 \cdot pole width + coil width) = 9999.
+\end{equation}
+
+
+
+Resistance (with $\sigma=\sigma_\text{Cu}$):
+\begin{equation}
+    R_c=\frac{N\,l_\text{avg}}{A\,\sigma} = \frac{50\cdot \SI{999}{\mm}}{\SI{91.867}{\mm\squared}\cdot \SI{5.96e4}{\siemens\per\mm}}
+\end{equation}
+
+Voltage per magnet:
+\begin{equation}
+    V_m = m \cdot R_c\,I = 2 \cdot \SI{999}{\ohm} \cdot \SI{999}{\ampere} = \SI{999}{\volt} 
+\end{equation}
+
+Dissipated power per magnet:
+\begin{equation}
+    P_m = m \cdot R_c\,I^2 = \SI{999}{\watt}
+\end{equation}
 
 \subsection{Cooling}
 Length of cooling circuit:
