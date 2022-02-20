@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+\draw
+(0,0) to [european current source={$Q=\SI{6.2}{\liter\per\minute}$}] (0,4)
+to [short] (6,4)
+to [short] (6,3)
+to [short] (2.5,3)
+to [R={$R_1=0.888$},i={$Q_1=\SI{3.1}{\liter\per\minute}$}] (2.5,1) 
+to [short] (6,1);
+
+\draw (6,3) 
+to [R={$R_2=0.888$},*-,i={$Q_2=\SI{3.1}{\liter\per\minute}$}] (6,1)
+to [short,-*] (6,1)
+to [short] (6,0)
+to [short] (0,0);
+
+\draw[->] (9,4) to[out=-70,in=70] node[anchor=west] {$\Delta p = \SI{6.4}{\bar}$} (9,0);
+\end{tikzpicture}
