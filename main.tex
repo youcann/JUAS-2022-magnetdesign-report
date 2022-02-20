@@ -7,6 +7,14 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+
 %figures etc.
 \usepackage[pdftex]{graphicx}
 \usepackage{standalone} %externalize files for faster compilation
@@ -22,6 +30,7 @@
 %units
 \usepackage{siunitx}
 \DeclareSIUnit{\bar}{bar}
+\sisetup{output-product=\ensuremath{\cdot},exponent-product=\ensuremath{\cdot}}
 
 %tikz
 \usepackage{tikz}
@@ -136,7 +145,7 @@ Pole width:
 
 Copper winding area
 \begin{align}
-A &= a^2- R^2 (4-\pi) - \pi \left(\frac{c}{2}\right)^2\\
+A &= a^2- R^2 (4+\pi) - \pi \left(\frac{c}{2}\right)^2\\
 A &= \SI{91.867}{\mm\squared}
 \end{align}
 with $a=\SI{11}{\mm}$, $R=\SI{1}{\mm}$, $c=\SI{6}{\mm}$.
@@ -154,6 +163,17 @@ Minimum number of turns:
     N_{B\text{,max}} &= \left\lceil\frac{(NI)_\text{max}}{I_\text{max}}\right\rceil = 45
 \end{align}
 
+To full fill the empirical good practice $\nicefrac{N_\text{horizontal}}{N_\text{vertical}}=2$,
+\begin{equation}
+    N=N_\text{horizontal} \times N_\text{vertical} = 10 \times 5 = 50
+\end{equation}
+is chosen.
+
+New current:
+\begin{equation}
+    \frac{(NI)_\text{max}}{I} = N \Rightarrow I = \frac{(NI)_\text{max}}{50} = \SI{492.42}{\ampere}
+\end{equation}
+
 \subsection{Coil Parameters}
 Coil width:
 \begin{equation}
@@ -170,13 +190,14 @@ with $N_\text{horizontal}=10$, $N_\text{vertical}=5$, $a=\SI{11}{\mm}$, $d_\text
 
 Average turn length:
 \begin{equation}
-    l_\text{avg}= \text{pole perimeter} + 4 \cdot w_\text{coil} + l_\text{mag} = \SI{32514.2}{\mm}
+    l_\text{avg}= \text{pole perimeter} + 4 \cdot w_\text{coil} = \SI{1472}{\mm}
 \end{equation}
 
 \begin{equation}
-pole perimeter = 2 \cdot (iron length + 2 \cdot pole width + coil width) = 9999.
+pole perimeter = 2 \cdot iron length + 2 \cdot pole width = \SI{960}{\mm}
 \end{equation}
 
+with $iron length = \SI{340}{\mm}$, $pole width = \SI{140.13}{\mm}$, $w_\text{coil} = \SI{128}{\mm}$
 
 \begin{figure}[H]
 \centering
@@ -184,43 +205,88 @@ pole perimeter = 2 \cdot (iron length + 2 \cdot pole width + coil width) = 9999.
 \caption{Coil cross section}
 \end{figure}
 
+Total resistance of the winding (wit $1/\sigma_\text{Cu}=\SI{1.72}{\micro\ohm\cm}$)
+\begin{equation}
+R_c=\frac{N\cdot l_\text{avg}}{A\cdot\sigma_\text{Cu}} = \frac{50 \cdot \SI{1472}{\mm}}{\SI{91.867}{\mm\squared}\cdot \nicefrac{1}{\SI{1.72}{\micro\ohm\cm}}} = \SI{13.442}{\milli\ohm}
+\end{equation}
 
+Voltage per magnet:
+\begin{equation}
+V_m = I \cdot m\,R_c = \SI{492.42}{\ampere} \cdot 2 \cdot \SI{0.016}{\ohm} = \SI{13.197}{\volt}
+\end{equation}
+
+Total voltage (number of magnets $M$):
+\begin{equation}
+V_\text{total} = M \cdot V_m = 3 \cdot \SI{16.197}{\volt} = \SI{39.591}{\volt}
+\end{equation}
+
+Dissipated power:
+\begin{equation}
+P_m = V_m \cdot I = I^2 \cdot m\,R_c = \SI{13.197}{\volt} \cdot \SI{492.42}{\ampere} = \SI{6.498}{\kilo\watt}
+\end{equation}
 
 \subsection{Cooling}
-Length of cooling circuit:
+With $\Delta T=\SI{15}{\kelvin}$ and the dissipated power $P_m=\SI{6.498}{\kilo\watt}$, the required water flow is
 \begin{equation}
-    l = \frac{K_c\,N\,l_\text{avg}}{K_w} = 
+    \frac{Q}{2} = 14.3 \frac{P_m}{\Delta T} \cdot \num{1e-3} = \SI{3.098}{\liter\per\minute}
 \end{equation}
+%inside si you can just use "e" for the exponent :)
 
 
-With the maximum allowed pressure drop of $\Delta p = \SI{0.7}{\mega\pascal} = \SI{7}{\bar}$, the hydraulic diameter $d=\SI{6}{\mm}$ and using
+
+
+With the water channel diameter $d=2r_c=\SI{6}{\mm}$, the average flow velocity is
 \begin{equation}
-\Delta p = 60\,l\frac{Q^{1.75}}{d^{4.75}},
-\end{equation}
-the maximum water flow $Q$ is
-\begin{equation}
-    Q = \left(\frac{\Delta p \cdot d^{4.75}}{60\cdot l}\right)^\frac{1}{1.75} = \SI{999}{\liter\per\minute}.
+    u_\text{avg} = 16.67 \cdot \frac{Q}{A} = 16.67 \cdot \frac{4\cdot Q}{\pi d^2} = 16.67 \cdot \frac{4 \cdot \SI{3.098}{\liter\per\minute}}{\pi \cdot (\SI{6}{\mm})^{2}} = \SI{1.827}{\meter\per\second}.
 \end{equation}
 
-Using this result and the maximum allowed temperature increase of $\Delta T=\SI{15}{\kelvin}$ together with
+Using the length of cooling circuit ($K_c=2$ and $K_w=1$)
 \begin{equation}
-    Q = 14.3 \frac{P}{\Delta T} \cdot \num{1e-3},
+    l = \frac{K_c\,N\,l_\text{avg}}{K_w} = \frac{1\cdot50\cdot\SI{1472}{\mm}}{1} = \SI{73.6}{\meter},
 \end{equation}
-the maximum allowed dissipated power is
+the pressure drop is
 \begin{equation}
-    P = \frac{Q \cdot \Delta T}{14.3 \cdot \num{1e-3}} = \SI{999}{\watt}.
-\end{equation}
-
-Average water velocity:
-\begin{equation}
-    u_\text{avg} = 16.67 \cdot \frac{Q}{A} = 16.67 \cdot \frac{4\cdot Q}{\pi d^2}
+    \Delta p 
+    = 60 \cdot l \cdot \frac{Q^{1.75}}{d^{4.75}} 
+    = 60 \cdot \SI{73.6}{\meter} \cdot \frac{(3.098)^{1.75}}{(6)^{4.75}}
+    = \SI{6.43}{\bar}
 \end{equation}
 
 Reynolds number (with $v=\SI{6.58e-7}{\meter\squared\per\second}$):
 \begin{equation}
-    R_e = d \cdot \frac{u_\text{avg}}{v} \cdot \num{1e-3} = \num{999}
+    R_e = d \cdot \frac{u_\text{avg}}{v} \cdot \num{1e-3} = \num{16660}
 \end{equation}
-From $R_e><4000$ turbulent flow can/cannot be assumed.
+From $R_e>4000$ turbulent flow can be assumed.
+
+
+
+
+
+\newpage
+\section{Numerical}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{img/quaterH.tikz}
+\caption{Input data for numerical simulation; all measurements in \si{\mm}; drawing not to scale}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Relevant magnet parameters}
+\begin{tabular}{ll}
+\toprule
+Name & Value \\
+\midrule
+Flux density $B$ & \SI{999}{\tesla}\\
+Gap height $h$ & \SI{999}{\mm}\\
+Pole width $w$ & \SI{999}{\mm}\\
+Ampereturns $NI$ & \SI{999}{\ampere}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
 
 \end{document}
 
