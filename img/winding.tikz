@@ -17,5 +17,5 @@
 \draw[Latex-] (45:0.60) -- node[fill=white,rotate=45] {$r_o=\SI{1}{\mm}$}+(45:3.5);
 \draw[*-Latex] (\a/2,\a/2) -- node[fill=blue!20,rotate=-15,align=center] {$r_c=$\\$\SI{3}{\mm}$} +(-15:\ri/2);
 \draw[Latex-] (-\di/2,0.8*\a) -- +(-0.5,0);
-\draw[Latex-] (0,0.8*\a) -- node[fill=white] {$d_i/2=\SI{1}{\mm}$} +(4,0);
+\draw[Latex-] (0,0.8*\a) -- node[fill=white] {$d_i/2=\SI{0.5}{\mm}$} +(4,0);
 \end{tikzpicture}
