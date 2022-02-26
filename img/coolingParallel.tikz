@@ -4,11 +4,11 @@
 to [short] (6,4)
 to [short] (6,3)
 to [short] (2.5,3)
-to [R={$R_1=0.888$},i={$Q_1=\SI{3.1}{\liter\per\minute}$}] (2.5,1) 
+to [R={$R_1=0.85$},i={$Q_1=\SI{3.1}{\liter\per\minute}$}] (2.5,1) 
 to [short] (6,1);
 
 \draw (6,3) 
-to [R={$R_2=0.888$},*-,i={$Q_2=\SI{3.1}{\liter\per\minute}$}] (6,1)
+to [R={$R_2=0.85$},*-,i={$Q_2=\SI{3.1}{\liter\per\minute}$}] (6,1)
 to [short,-*] (6,1)
 to [short] (6,0)
 to [short] (0,0);

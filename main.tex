@@ -7,6 +7,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 
+
 \usepackage{geometry}
 \geometry{
 	a4paper,
@@ -64,20 +65,39 @@
 \usepackage{subfig}
 \setlength\parindent{0pt}
 
-\title{Magnet design for MedAustron}
-\subtitle{Group 3}
-\author{Marvin Noll, Gael Craviero, Sophie Morard, Katyayni Tiwari, Abhishek Panchal}
-\date{\today}
-
 \begin{document}
-\maketitle
+\begin{titlepage}
+\begin{sffamily}
+\begin{center}
+\begin{minipage}{1\textwidth}
+      \begin{center} 
+      \includegraphics[height=0.4 \textwidth]{juas.jpeg} 
+      \end{center} 
+    \end{minipage}
+\vspace{4.5cm}
 
+\rule{\linewidth}{1.5pt} \\[0.5cm]
+\Large \textbf{Magnet design for MedAustron} \\[0.5cm]
+\rule{\linewidth}{1.5pt} \\
+\vfill
+\Large Group 3 : \\ [0.5cm]
+\normalsize Gael Craviero, Sophie Morard, Marvin Noll, Abhishek Panchal, Katyayni Tiwari  \\ [0.5cm]
+\normalsize 28 February 2022
+\end{center}
+\end{sffamily}
+\end{titlepage}
+\tableofcontents
+\newpage
+\section*{Introduction}
+\addcontentsline{toc}{part}{Introduction}
+The aim of this report is to present the analytical design and simulation of three bending magnets for MedAustron's medium energy beam transfer line.
 \section{Analytical}
 \subsection{Magnet type decision}
 The arguments for and against a H-type magnet are:
 \begin{itemize}
-\pro Mechanical rigid
+\pro Mechanically rigid
 \pro Symmetrical
+\pro Less iron than C-shape
 \con Hard to get the beam pipe in and out
 \end{itemize}
 
@@ -102,12 +122,12 @@ The magnetic length of the (dipole) magnet can be approximated by
     &= \SI{397.2}{\mm}.\nonumber
 \end{align}
 
-With the definition of the radian ($\theta=\nicefrac{s}{\rho}$) and $s=l_\text{mag}$, the bending radius $\rho$ is
+With the definition of the radian ($\theta=\nicefrac{b}{\rho}$) and the arc length $b=l_\text{mag}$, the bending radius $\rho$ is
 
 \begin{align}
     \theta_\text{mag} &= \frac{l_\text{mag}}{\rho} \\
-    \Rightarrow \rho  &= \frac{l_\text{mag}}{\theta_\text{mag}}\\
-    &= \frac{\SI{397.2}{\mm}}{\SI{0.6283}{\radian}} \nonumber\\
+    \Rightarrow \rho  &= \frac{l_{mag}}{2\cdot\sin(\theta_\text{mag}/2)}\\
+    &= \frac{\SI{397.2}{\mm}}{2\cdot \sin(\SI{0.3141}{\radian})} \\
     &= \SI{0.642}{\meter}. \nonumber
 \end{align}
 
@@ -118,7 +138,8 @@ With the given minimum and maximum $(B\rho)$ for a proton and a $C^{6+}$ beam, t
 \end{align}
 
 
-\subsection{Pole width and yoke thickness}
+\newpage
+\subsection{Pole design and yoke dimensioning}
 With the given field quality inside the GFR $\nicefrac{\Delta B}{B_0} = \num{1e-3}$,
 the optimized normalized pole overhang is\footnote{Compared to the unoptimized $x_\text{unoptimized}= 1.5898$}
 \begin{align}
@@ -134,17 +155,22 @@ This equals a pole overhang of
     &= \SI{18.645}{\mm}.\nonumber
 \end{align}
 
-Taking the sagitta $s$ into account and using
+With taking the sagitta
 \begin{equation}
-    \text{GFRx'} = \text{GFRx} + \underbrace{\rho(1-\cos \nicefrac{\theta}{2}}_s
-    = \SI{20}{\mm} + \SI{31.42}{\mm} 
-    = \SI{51.42}{\mm}, 
+    s= \rho\left(1-\cos \nicefrac{\theta}{2}\right)
+    = \SI{31.42}{\mm} 
 \end{equation}
-the pole width $w$ computes to
+into account, the the pole width $w$ computes to
 \begin{align}
-	w & = 2\cdot \left(\text{GFRx'} + a_\text{optimized}\right)            \\
-	  & = 2\cdot \left(\SI{51.42}{\mm} + \SI{18.645}{\mm}\right) \nonumber \\
-	  & = \SI{140.13}{\mm}. \nonumber
+	w & =  2 \left(\text{GFRx} + a_\text{optimized}\right) +  \rho\left(1-\cos \nicefrac{\theta}{2}\right)          \\
+	  & =  2 \left(\SI{20}{\mm} + \SI{18.645}{\mm}\right) + \SI{31.42}{\mm}\nonumber \\
+	  & = \SI{108.71}{\mm}. \nonumber
+\end{align}
+
+The yoke thickness $w_\text{leg}$ is ($B_\text{max} = \SI{1.19}{\tesla}$, $w = \SI{108.71}{\mm}$, $h = \SI{52}{\mm}$, $B_\text{saturation} = \SI{1.4}{\tesla}$)
+\begin{align}
+w_\text{leg} &= B_\text{max} \cdot \frac{w + 2 \cdot h}{2 \cdot B_\text{saturation}} \\
+&\simeq \SI{90.4}{\mm}
 \end{align}
 
 
@@ -224,53 +250,53 @@ the air gap around the coil(\textcolor{green!30}{$\blacksquare$})}
 
 With the pole perimeter
 \begin{equation}
-	p = 2 \cdot l\text{iron} + 2 \cdot w = \SI{960}{\mm},
+	p = 2 \cdot l_\text{iron} + 2 \cdot w = \SI{897}{\mm},
 \end{equation}
-the average turn length is ($l\text{iron} = \SI{340}{\mm}$, $w = \SI{140.13}{\mm}$ and $w_\text{coil} = \SI{128}{\mm}$)
+the average turn length is ($l_\text{iron} = \SI{340}{\mm}$, $w = \SI{109}{\mm}$ and $w_\text{coil} = \SI{128}{\mm}$)
 \begin{equation}
-    l_\text{avg}= p + 4 \cdot w_\text{coil} = \SI{1472}{\mm}.
+    l_\text{avg}= p + 4 \cdot w_\text{coil} = \SI{1409}{\mm}.
 \end{equation}
 
 The resistance of one coil winding is (with $1/\sigma_\text{Cu}=\SI{1.72}{\micro\ohm\cm}$)
 \begin{align}
 R_c&=\frac{N\cdot l_\text{avg}}{A\cdot\sigma_\text{Cu}} \\
-&= \frac{50 \cdot \SI{1472}{\mm}}{\SI{91.867}{\mm\squared}\cdot \nicefrac{1}{\SI{1.72}{\micro\ohm\cm}}} \nonumber\\
-&= \SI{13.442}{\milli\ohm} \nonumber
+&= \frac{50 \cdot \SI{1409}{\mm}}{\SI{91.867}{\mm\squared}\cdot \nicefrac{1}{\SI{1.72}{\micro\ohm\cm}}} \nonumber\\
+&= \SI{13.19}{\milli\ohm} \nonumber
 \end{align}
 
 With the number of coils per magnet $m$, the DC steady-state voltage per magnet is
 \begin{align}
 V_m &= I \cdot m\,R_c \\
-&= \SI{492.42}{\ampere} \cdot 2 \cdot \SI{0.016}{\ohm} \nonumber\\
-&= \SI{13.197}{\volt}.\nonumber
+&= \SI{492.42}{\ampere} \cdot 2 \cdot \SI{13.19}{m\ohm} \nonumber\\
+&= \SI{12.99}{\volt}.\nonumber
 \end{align}
 
 The total voltage over all magnets is (number of magnets $M$)
 \begin{align}
 V_\text{total} &= M \cdot V_m \\
-&= 3 \cdot \SI{16.197}{\volt} \nonumber\\
-&= \SI{39.591}{\volt}.\nonumber
+&= 3 \cdot \SI{12.99}{\volt} \nonumber\\
+&= \SI{38.97}{\volt}.\nonumber
 \end{align}
 This is well below the maximum output voltage of the power supply ($V_\text{total, max}=\SI{80}{\volt}$).
 
 The dissipated power in one magnet is calculated to
 \begin{align}
 P_m &= V_m \cdot I = I^2 \cdot m\,R_c \\
-&= \SI{13.197}{\volt} \cdot \SI{492.42}{\ampere} \nonumber\\
-&= \SI{6.498}{\kilo\watt}.\nonumber
+&= \SI{13.19}{\volt} \cdot \SI{492.42}{\ampere} \nonumber\\
+&= \SI{6.495}{\kilo\watt}.\nonumber
 \end{align}
 
 \subsection{Cooling}
-With the given $\Delta T=\SI{15}{\kelvin}$ and the dissipated power $P_m=\SI{6.498}{\kilo\watt}$, the total required water flow in one magnet is
+With the given $\Delta T=\SI{15}{\kelvin}$ and the dissipated power $P_m=\SI{6.495}{\kilo\watt}$, the total required water flow in one magnet is
 \begin{equation}
-    Q = 14.3 \frac{P_m}{\Delta T} \cdot \num{1e-3} = \SI{6.2}{\liter\per\minute}
+    Q = 14.3 \frac{P_m}{\Delta T} \cdot \num{1e-3} = \SI{6.19}{\liter\per\minute}
 \end{equation}
 
 Using the length of cooling circuit for one coil is ($K_c=1$ and $K_w=1$)
 \begin{align}
     l &= \frac{K_c\,N\,l_\text{avg}}{K_w} \\
-    &= \frac{1\cdot50\cdot\SI{1472}{\mm}}{1} \nonumber\\ 
-    &= \SI{73.6}{\meter}. \nonumber
+    &= \frac{1\cdot50\cdot\SI{1409}{\mm}}{1} \nonumber\\ 
+    &= \SI{70.5}{\meter}. \nonumber
 \end{align}
 
 The pressure drop over a cooling circuit is given by ($d=2r_c=\SI{6}{\mm}$)
@@ -285,7 +311,7 @@ This can be interpreted a (non-linear) hydraulic equivalent to Ohm's law in the 
 
 The hydraulic resistance of one coil is given (in AU) as
 \begin{equation}
-R= \frac{60 \cdot l}{d^{4.75}} = 0.888
+R= \frac{60 \cdot l}{d^{4.75}} = 0.85
 \end{equation}
 
 To cool one magnet, the cooling circuits can either be connected in series or in parallel (see \autoref{fig:cool}).
@@ -299,8 +325,8 @@ To cool one magnet, the cooling circuits can either be connected in series or in
 
 For both cases, the pressure drops are
 \begin{align}
-\Delta p_\text{Series} &= 2 \cdot 0.888 \cdot 6.2^{1.75} = \SI{43.26}{\bar} \\
-\Delta p_\text{Parallel} &= 0.888 \cdot 3.1^{1.75} = \SI{6.43}{\bar}
+\Delta p_\text{Series} &= 2 \cdot 0.85 \cdot 6.2^{1.75} = \SI{41.4}{\bar} \\
+\Delta p_\text{Parallel} &= 0.85 \cdot 3.1^{1.75} = \SI{6.2}{\bar}
 \end{align}
 
 As the series connection pressure drop exceeds the limit of the pump ($\Delta p_\text{max}=\SI{7}{\bar}$), the parallel connection is used.
@@ -325,6 +351,7 @@ From $R_e>4000$ turbulent flow can be assumed for the flow in the water channels
 \centering
 \includegraphics[width=\textwidth]{img/quaterH.tikz}
 \caption{Input data for numerical simulation; all measurements in \si{\mm}; drawing not to scale}
+\label{data}
 \end{figure}
 
 \begin{table}[H]
@@ -336,13 +363,32 @@ Name & Value \\
 \midrule
 Flux density $B$ & \SIrange{0.596}{1.19}{\tesla}\\
 Gap height $h$ & \SI{52}{\mm}\\
-Pole width $w$ & \SI{140}{\mm}\\
+Pole width $w$ & \SI{110}{\mm}\\
 Ampereturns $NI$ & \SIrange{12.3}{24.6}{\kilo\ampere}\\
 \bottomrule
 \end{tabular}
 \end{table}
+By using the data of \autoref{data} on FEMM, the current $I = \SI{492.42}{\ampere}$ and the number of turns $N = 50$, the result of the simulation obtained is shown in \autoref{FEMM1}.
+The simulation area is set to $600 \times 400$. This way the simulated region is much bigger than the magnet and there is not cut-off of significant percentages of the field lines.
 
+\begin{figure}[H]
+    \centering
+\includegraphics[width=1 \textwidth]{magnet_non_OP.png} 
+\caption{Result of FEMM for the magnet with the initial data}
+\label{FEMM1}
+\end{figure} 
 
+At the pole level, the value of the $B$ field can be over \SI{2}{\tesla} in the yoke, there is a lot of saturation. Therefore, the magnet needs to be optimized.
+For this, the pole width is not modified but instead, the upper part of the pole is widened to \SI{90}{\mm}, like the value of the pole thickness that was calculated to optimized the field quality. Also the region of the yoke, where the field is very weak, is cut. The result of this simulation is shown in \autoref{FEMM2}.
+
+\begin{figure}[H]
+    \centering
+\includegraphics[width=1 \textwidth]{magnet_OP.png} 
+\caption{Result of FEMM for the modified magnet for optimization}
+\label{FEMM2}
+\end{figure} 
+
+The saturation has been definitely reduced and the field in the center part is homogeneous and around \SI{1.2}{\tesla}. The left part of the yoke has been rounded off for the upper part of the pole to widen more rapidly and to optimize the good field region. To have more straight field lines in the center of the magnet the rounded part could maybe be done as staircase.
 
 \end{document}
 
