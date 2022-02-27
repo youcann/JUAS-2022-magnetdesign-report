@@ -91,17 +91,21 @@
 \section*{Introduction}
 \addcontentsline{toc}{part}{Introduction}
 The aim of this report is to present the analytical design and simulation of three bending magnets for MedAustron's medium energy beam transfer line.
-\section{Analytical}
+
+\section{\textbf{Analytical Design : Exercise 1}}
 \subsection{Magnet type decision}
 The arguments for and against a H-type magnet are:
 \begin{itemize}
 \pro Mechanically rigid
+\pro Closed circuit, so no stray field outside
 \pro Symmetrical
 \pro Less iron than C-shape
 \con Hard to get the beam pipe in and out
 \end{itemize}
 
 \subsection{Aperture Height}
+Since the good field region is the central region around the theoretical beam trajectory where the field quality has to be within certain(few mm) tolerances. \\
+
 The aperture height is given as the sum of the good field region $h_\text{GFR} = 2\cdot \text{GFR}_y$, the thickness of the vacuum pipe $d_\text{vacuum}$ and a tolerance for installation and thermal expansion $d_\text{tolerance}$ as
 \begin{align}
     h &= h_\text{GFR} + 2\cdot d_\text{vacuum} + d_\text{tolerance} \\
@@ -122,10 +126,10 @@ The magnetic length of the (dipole) magnet can be approximated by
     &= \SI{397.2}{\mm}.\nonumber
 \end{align}
 
-With the definition of the radian ($\theta=\nicefrac{b}{\rho}$) and the arc length $b=l_\text{mag}$, the bending radius $\rho$ is
+The bending radius can be calculated by using trigonometric relation by forming a triangle of side $l_mag/2 \text{and hypontenuse} \rho$ with the angle $\theta/2$
 
 \begin{align}
-    \theta_\text{mag} &= \frac{l_\text{mag}}{\rho} \\
+    \sin(\theta_\text{mag}/2) &= \frac{l_\text{mag}/2}{\rho} \\
     \Rightarrow \rho  &= \frac{l_{mag}}{2\cdot\sin(\theta_\text{mag}/2)}\\
     &= \frac{\SI{397.2}{\mm}}{2\cdot \sin(\SI{0.3141}{\radian})} \\
     &= \SI{0.642}{\meter}. \nonumber
@@ -345,7 +349,7 @@ From $R_e>4000$ turbulent flow can be assumed for the flow in the water channels
 
 
 \newpage
-\section{Numerical}
+\section{\textbf{Numerical Design: Exercise 2}}
 
 \begin{figure}[H]
 \centering

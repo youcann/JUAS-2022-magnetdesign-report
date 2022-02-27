@@ -13,5 +13,5 @@ to [short,-*] (6,1)
 to [short] (6,0)
 to [short] (0,0);
 
-\draw[->] (9,4) to[out=-70,in=70] node[anchor=west] {$\Delta p = \SI{6.4}{\bar}$} (9,0);
+\draw[->] (9,4) to[out=-70,in=70] node[anchor=west] {$\Delta p = \SI{6.2}{\bar}$} (9,0);
 \end{tikzpicture}
